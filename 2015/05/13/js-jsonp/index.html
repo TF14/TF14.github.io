@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Jsonp 个人理解 | Tenfour&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="javascript,js,jquery,jq,json,jsonp,跨域"/>
+  <meta name="description" content="AJAXAsynchronous JavaScript and XML (Ajax ) 是驱动新一代 Web 站点（流行术语为 Web 2.0 站点）的关键技术。Ajax 允许在不干扰 Web 应用程序的显示和行为的情况下在后台进行数据检索。使用 XMLHttpRequest 函数获取数据，它是一种 API，允许客户端 JavaScript 通过 HTTP 连接到远程服务器。Ajax 也是许多 m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jsonp 个人理解">
+<meta property="og:url" content="http://tenfour.cn/2015/05/13/js-jsonp/index.html">
+<meta property="og:site_name" content="Tenfour'blogs">
+<meta property="og:description" content="AJAXAsynchronous JavaScript and XML (Ajax ) 是驱动新一代 Web 站点（流行术语为 Web 2.0 站点）的关键技术。Ajax 允许在不干扰 Web 应用程序的显示和行为的情况下在后台进行数据检索。使用 XMLHttpRequest 函数获取数据，它是一种 API，允许客户端 JavaScript 通过 HTTP 连接到远程服务器。Ajax 也是许多 m">
+<meta property="og:updated_time" content="2015-05-28T10:30:42.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jsonp 个人理解">
+<meta name="twitter:description" content="AJAXAsynchronous JavaScript and XML (Ajax ) 是驱动新一代 Web 站点（流行术语为 Web 2.0 站点）的关键技术。Ajax 允许在不干扰 Web 应用程序的显示和行为的情况下在后台进行数据检索。使用 XMLHttpRequest 函数获取数据，它是一种 API，允许客户端 JavaScript 通过 HTTP 连接到远程服务器。Ajax 也是许多 m">
+  
+    <link rel="shortcut icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories/html">HTML/HTML5</a>
+        
+          <a class="main-nav-link" href="/categories/css">CSS/CSS3</a>
+        
+          <a class="main-nav-link" href="/categories/javascript">Javascript</a>
+        
+          <a class="main-nav-link" href="/categories/nodeJS">NodeJS</a>
+        
+          <a class="main-nav-link" href="/categories/mongodb">MongoDB</a>
+        
+          <a class="main-nav-link" href="/categories/hexo">Hexo</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-js-jsonp" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/13/js-jsonp/" class="article-date">
+  <time datetime="2015-05-13T10:28:25.000Z" itemprop="datePublished">2015-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Jsonp 个人理解
+    </h1>
+  
+
+      </header>
+      
+      
+        <div class="article-entry" itemprop="articleBody">
+          <h2 id="AJAX">AJAX</h2><p>Asynchronous JavaScript and XML (Ajax ) 是驱动新一代 Web 站点（流行术语为 Web 2.0 站点）的关键技术。Ajax 允许在不干扰 Web 应用程序的显示和行为的情况下在后台进行数据检索。使用 XMLHttpRequest 函数获取数据，它是一种 API，允许客户端 JavaScript 通过 HTTP 连接到远程服务器。Ajax 也是许多 mashup 的驱动力，它可将来自多个地方的内容集成为单一 Web 应用程序。</p>
+<p>但是有经验的程序员都知道由于受到浏览器的限制，Ajax不能跨域获取数据，所谓跨域就是读取另一个地方的数据（不同服务器，同一服务器不同端口，不同协议（http/https等），一个ip一个域名德等，这些都算跨域）。但很多时候我们需要收集第三方的数据。解决跨域问题的方法很多，其中jsonp就算其中一种。</p>
+<h2 id="JSONP">JSONP</h2><p>我们来看几个例子帮助理解：</p>
+<p>demo1：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function fun(data)&#123;&#10;&#9;console.log(data.name);&#10;&#125;&#10;fun(&#123;name: &#39;tenfour&#39;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>OK,这个玩过编程的都知道，就是一个函数传参的调用呗。再看下一个：<br>demo2：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script scr=&#34;a.js&#34;&#62;&#60;/script&#62;&#10;&#60;script scr=&#34;b.js&#34;&#62;&#60;/script&#62;&#10;&#10;/*a.js*/&#10;function fun(data)&#123;&#10;&#9;console.log(data.name);&#10;&#125;&#10;/*b.js*/&#10;fun(&#123;name: &#39;tenfour&#39;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这个就只是把js代码分离出来了呗。回答是对的。<br>在web浏览器中，src（script，img，iframe等）这些都是可以跨域获取的，经常我们不是还用到CDN托管么。聪明的程序员注意到这点了，我们就可以把对外提的供数据卸载一个调用函数里面，类似于<code>demo2</code>的 <code>b.js</code>。<br>例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/*weather.js*/&#10;getWeather(&#123;&#10;&#9;time: &#39;2015-5-13 08:23:14&#39;,&#10;&#9;dayTemp: &#39;18&#8451;~20&#8451;&#39;,&#10;&#9;nigthTemp: &#39;10&#8451;~15&#8451;&#39;,&#10;&#9;weather: &#39;&#22810;&#20113;&#39;,&#10;&#9;wind: &#123;&#10;&#9;&#9;direction: &#39;&#35199;&#21271;&#39118;&#39;,&#10;&#9;&#9;size: &#39;3~4&#32423;&#39;&#10;&#9;&#125;&#10;&#9;....&#10;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>然后我们把这个获取天气的数据文件 <code>weather.js</code>放在服务器上(假定服务器地址是：<code>tenfour.con/weather.js</code> )，然后我们就可以把这个地址和回调函数callback（<code>getWeather</code>）公布出去，别人就可以用了。引用方式。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;script&#62;&#10;&#9;var oSrc = document.createElement(&#39;script&#39;);&#10;&#9;oSrc.scr = &#39;http://tenfour.con/weather.js&#39;;&#10;&#9;document.getElementsByTagName(&#39;head&#39;)[0].appendChild(oSrc);&#10;&#9;function getWeather(data)&#123;&#10;&#9;&#9;...  //&#36825;&#37324;&#23601;&#21487;&#20197;&#29992;&#37324;&#38754;&#30340;&#25152;&#26377;&#25968;&#25454;&#20102;&#12290;&#10;&#9;&#125;;&#10;&#60;/script&#62;</span><br></pre></td></tr></table></figure></p>
+<p>这就是jsonp，比较简单把，当然你可以自己封装一下，或者用其他插件比如jquery这些都帮你封装好了的。简单一点理解jsonp就是一个传参函数的调用。</p>
+<p>有兴趣的可以去试一下把 <code>weather.json</code> 放在一个服务器上，在另外一个服务器上用ajax去调用试试。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#10;&#9;time: &#39;2015-5-13 08:23:14&#39;,&#10;&#9;dayTemp: &#39;18&#8451;~20&#8451;&#39;,&#10;&#9;nigthTemp: &#39;10&#8451;~15&#8451;&#39;,&#10;&#9;weather: &#39;&#22810;&#20113;&#39;,&#10;&#9;wind: &#123;&#10;&#9;&#9;direction: &#39;&#35199;&#21271;&#39118;&#39;,&#10;&#9;&#9;size: &#39;3~4&#32423;&#39;&#10;&#9;&#125;&#10;&#9;....&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsonp/">jsonp</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/13/html-reflows-repaints/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HMLT 页面重绘(repaints)和回流(reflows)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/12/nodejs-mongodb/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">nodeJS操作MongoDB数据库</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-js-jsonp" data-title="Jsonp 个人理解" data-url="http://tenfour.cn/2015/05/13/js-jsonp/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'tenfour'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章分类：</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mongodb/">mongodb</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/">nodeJS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/express/">express</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云：</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogs/" style="font-size: 17.5px;">blogs</a> <a href="/tags/box-shadow/" style="font-size: 10px;">box-shadow</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/exports/" style="font-size: 10px;">exports</a> <a href="/tags/express/" style="font-size: 12.5px;">express</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 17.5px;">hexo</a> <a href="/tags/html/" style="font-size: 12.5px;">html</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nodeJS/" style="font-size: 20px;">nodeJS</a> <a href="/tags/reflows/" style="font-size: 10px;">reflows</a> <a href="/tags/repaints/" style="font-size: 10px;">repaints</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件委托/" style="font-size: 10px;">事件委托</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/博客/" style="font-size: 17.5px;">博客</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/回流/" style="font-size: 10px;">回流</a> <a href="/tags/图片/" style="font-size: 10px;">图片</a> <a href="/tags/多边形/" style="font-size: 10px;">多边形</a> <a href="/tags/天气/" style="font-size: 10px;">天气</a> <a href="/tags/安装/" style="font-size: 12.5px;">安装</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/百分比/" style="font-size: 10px;">百分比</a> <a href="/tags/第三方/" style="font-size: 10px;">第三方</a> <a href="/tags/进度条/" style="font-size: 10px;">进度条</a> <a href="/tags/重绘/" style="font-size: 10px;">重绘</a> <a href="/tags/问题/" style="font-size: 12.5px;">问题</a> <a href="/tags/阴影/" style="font-size: 10px;">阴影</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档：</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">26</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近更新：</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/30/css-box-shadow/">无所不能的box-shadow</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/30/html-hash/">HTML利用hash（#!）弥补ajax局部刷新的不足</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/20/css-polygon/">利用DIV+CSS实现图片的多边形显示效果</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/15/css-circle/">一个div实现圆形百分比进度条</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/13/html-reflows-repaints/">HMLT 页面重绘(repaints)和回流(reflows)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 tenfour<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories/html" class="mobile-nav-link">HTML/HTML5</a>
+  
+    <a href="/categories/css" class="mobile-nav-link">CSS/CSS3</a>
+  
+    <a href="/categories/javascript" class="mobile-nav-link">Javascript</a>
+  
+    <a href="/categories/nodeJS" class="mobile-nav-link">NodeJS</a>
+  
+    <a href="/categories/mongodb" class="mobile-nav-link">MongoDB</a>
+  
+    <a href="/categories/hexo" class="mobile-nav-link">Hexo</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

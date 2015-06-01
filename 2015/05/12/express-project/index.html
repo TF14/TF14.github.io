@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nodeJS利用express搭建项目框架 | Tenfour&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="nodejs,express,项目搭建,express框架"/>
+  <meta name="description" content="利用npm搭建项目首先，安装express（express安装初始以及故障解决）。e:                  #&amp;#36827;&amp;#20837;E&amp;#30424;&amp;#10;express test        #&amp;#21019;&amp;#24314;express&amp;#39033;&amp;#30446;test&amp;#10;&amp;#10;//express -e test&amp;#10;#&amp;#21019;&amp;#2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nodeJS利用express搭建项目框架">
+<meta property="og:url" content="http://tenfour.cn/2015/05/12/express-project/index.html">
+<meta property="og:site_name" content="Tenfour'blogs">
+<meta property="og:description" content="利用npm搭建项目首先，安装express（express安装初始以及故障解决）。e:                  #&amp;#36827;&amp;#20837;E&amp;#30424;&amp;#10;express test        #&amp;#21019;&amp;#24314;express&amp;#39033;&amp;#30446;test&amp;#10;&amp;#10;//express -e test&amp;#10;#&amp;#21019;&amp;#2">
+<meta property="og:updated_time" content="2015-05-20T08:39:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nodeJS利用express搭建项目框架">
+<meta name="twitter:description" content="利用npm搭建项目首先，安装express（express安装初始以及故障解决）。e:                  #&amp;#36827;&amp;#20837;E&amp;#30424;&amp;#10;express test        #&amp;#21019;&amp;#24314;express&amp;#39033;&amp;#30446;test&amp;#10;&amp;#10;//express -e test&amp;#10;#&amp;#21019;&amp;#2">
+  
+    <link rel="shortcut icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories/html">HTML/HTML5</a>
+        
+          <a class="main-nav-link" href="/categories/css">CSS/CSS3</a>
+        
+          <a class="main-nav-link" href="/categories/javascript">Javascript</a>
+        
+          <a class="main-nav-link" href="/categories/nodeJS">NodeJS</a>
+        
+          <a class="main-nav-link" href="/categories/mongodb">MongoDB</a>
+        
+          <a class="main-nav-link" href="/categories/hexo">Hexo</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-express-project" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/12/express-project/" class="article-date">
+  <time datetime="2015-05-12T01:20:49.000Z" itemprop="datePublished">2015-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nodeJS/">nodeJS</a>►<a class="article-category-link" href="/categories/nodeJS/express/">express</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nodeJS利用express搭建项目框架
+    </h1>
+  
+
+      </header>
+      
+      
+        <div class="article-entry" itemprop="articleBody">
+          <h2 id="利用npm搭建项目">利用npm搭建项目</h2><p>首先，安装express（<a href="/2015/05/09/express-install">express安装初始以及故障解决</a>）。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">e:                  #&#36827;&#20837;E&#30424;&#10;express test        #&#21019;&#24314;express&#39033;&#30446;test&#10;&#10;//express -e test&#10;#&#21019;&#24314;&#39033;&#30446;&#40664;&#35748;&#27169;&#29256;&#24341;&#25806;&#20026;jade&#65292;&#21487;&#20197;&#21152;-e&#36873;&#25321;&#27169;&#29256;&#24341;&#25806;&#20026;ejs&#10;cd test             #&#36827;&#20837;&#39033;&#30446;&#25991;&#20214;&#22841;&#10;npm install         #&#19979;&#36733;&#39033;&#30446;&#20381;&#36182;&#21253;&#10;npm start           #&#21551;&#21160;&#39033;&#30446;</span><br></pre></td></tr></table></figure></p>
+<p>之后就能进入 <code>http:\\localhost:3000</code> 浏览到了。express项目默认端口为3000。</p>
+<h2 id="项目目录">项目目录</h2><ol>
+<li>node_modules：项目模块（依赖包）存放目录，如express,ejs,jade,mysql,mongoose等模块。</li>
+<li>public：静态文件（js、css、img）存放目录。</li>
+<li>routes：路由控制，后面详解。</li>
+<li>views：视图（ejs或者jade模版）存放目录。</li>
+</ol>
+<h2 id="模块化">模块化</h2><p>在说下面类容之前先看一下nodejs的模块化编程。<br>在nodejs服务器端（以下称后台）编程，nodejs提供了exports 和 require两个方法来实现。<br>例如：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/* a.js */&#10;var a = function()&#123;&#10;    console.log(1);&#10;&#125;&#10;exports.A = a;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：alert是浏览器对象window的一个方法，在后台都不是在浏览器里面执行，没有alert和BOM的所有东西，只有用 <code>console.log()</code> 在控制台输出。</strong><br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/* b.js&#20551;&#23450;&#21644;a.js&#21516;&#32423;*/&#10;var thisA = require(&#39;./a&#39;);&#10;//&#36825;&#37324;&#30340;a&#26159;&#25991;&#20214;&#21517;&#65292;&#19981;&#29992;&#21152;.js&#21518;&#32512;&#21517;&#10;//&#21516;&#19968;&#32423;&#20063;&#24517;&#39035;&#21152;&#19978;&#21069;&#38754;&#30340; ./ &#65292;&#22914;&#26524;&#30452;&#25509;&#20889;&#25104; require(&#39;a&#39;)&#23427;&#20250;&#21435;&#35843;&#29992;&#31995;&#32479;(node_modules)&#30340;&#27169;&#22359;&#12290;&#10;&#10;thisA.A();&#10;//&#36825;&#37324;&#30340;A&#26159;&#19978;&#38754;exports&#26292;&#38706;&#20986;&#26469;&#30340;&#21517;&#31216;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>同样这种写法也可以：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">/* a.js */&#10;var a = function()&#123;&#10;    console.log(1);&#10;&#125;&#10;module.exports = a;&#10;&#10;/* b.js */&#10;var thisA = require(&#39;./a&#39;);&#10;thisA();</span><br></pre></td></tr></table></figure></p>
+<p><strong>仔细看，注意两种的区别！<a href="/2015/05/12/express-exports">详情查看</a></strong></p>
+<p>nodejs模块化就是利用exports暴露接口同时另一个文件用require接受。（这里只是为了方便理解可以这么看，并不能这么简单的认为）。</p>
+<h2 id="app-js详解">app.js详解</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//&#24341;&#20837;&#31995;&#32479;&#27169;&#22359;&#65288;node_modules&#65289;&#37324;&#38754;&#30340;&#27169;&#22359;&#12290;&#10;var express = require(&#39;express&#39;);&#10;var path = require(&#39;path&#39;);&#10;var favicon = require(&#39;serve-favicon&#39;);&#10;var logger = require(&#39;morgan&#39;);&#10;var cookieParser = require(&#39;cookie-parser&#39;);&#10;var bodyParser = require(&#39;body-parser&#39;);&#10;&#10;//&#24341;&#20837;&#33258;&#23450;&#20041;&#27169;&#22359;&#10;var routes = require(&#39;./routes/index&#39;);&#10;var users = require(&#39;./routes/users&#39;);&#10;&#10;//&#23454;&#20363;&#21270;/&#21021;&#22987;&#21270;express&#10;var app = express();&#10;&#10;//&#35774;&#32622;&#35270;&#22270;&#24341;&#25806;&#30340;&#36335;&#24452;&#10;app.set(&#39;views&#39;, path.join(__dirname, &#39;views&#39;));&#10;//&#35774;&#32622;&#35270;&#22270;&#24341;&#25806;&#20026;ejs&#10;app.set(&#39;view engine&#39;, &#39;ejs&#39;);&#10;&#10;//&#35831;&#27714;&#35299;&#26512;&#31561;&#19968;&#20123;&#35774;&#32622;&#10;app.use(logger(&#39;dev&#39;));&#10;app.use(bodyParser.json());&#10;app.use(bodyParser.urlencoded(&#123; extended: false &#125;));&#10;app.use(cookieParser());&#10;&#10;// &#35774;&#32622;&#38745;&#24577;&#25991;&#20214;&#36335;&#24452;&#10;app.use(express.static(path.join(__dirname, &#39;public&#39;)));&#10;&#10;//&#35831;&#27714;&#36335;&#30001;&#10;app.use(&#39;/&#39;, routes);&#10;app.use(&#39;/users&#39;, users);&#10;&#10;//404&#35774;&#32622;&#10;app.use(function(req, res, next) &#123;&#10;  var err = new Error(&#39;Not Found&#39;);&#10;  err.status = 404;&#10;  next(err);&#10;&#125;);&#10;&#10;&#10;// &#35831;&#27714;&#38169;&#35823;&#22788;&#29702;&#10;if (app.get(&#39;env&#39;) === &#39;development&#39;) &#123;&#10;  app.use(function(err, req, res, next) &#123;&#10;    res.status(err.status || 500);&#10;    res.render(&#39;error&#39;, &#123;&#10;      message: err.message,&#10;      error: err&#10;    &#125;);&#10;  &#125;);&#10;&#125;&#10;app.use(function(err, req, res, next) &#123;&#10;  res.status(err.status || 500);&#10;  res.render(&#39;error&#39;, &#123;&#10;    message: err.message,&#10;    error: &#123;&#125;&#10;  &#125;);&#10;&#125;);&#10;&#10;//&#23548;&#20986;app&#20379;&#20854;&#20182;&#25991;&#20214;&#20351;&#29992;&#10;module.exports = app;</span><br></pre></td></tr></table></figure>
+<h2 id="www-js解析">www.js解析</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//&#24341;&#20837;&#19978;&#38754;app.js&#23548;&#20986;&#30340;app&#10;var app = require(&#39;../app&#39;);&#10;&#10;//&#24341;&#20837;&#31995;&#32479;&#65288;node_modules&#65289;&#27169;&#22359;&#10;var debug = require(&#39;debug&#39;)(&#39;test:server&#39;);&#10;var http = require(&#39;http&#39;);&#10;&#10;//&#31471;&#21475;&#35774;&#32622;&#10;var port = normalizePort(process.env.PORT || &#39;3000&#39;);&#10;app.set(&#39;port&#39;, port);&#10;&#10;//&#21019;&#24314;&#26381;&#21153;&#10;var server = http.createServer(app);&#10;&#10;//&#30417;&#21548;&#31471;&#21475;&#10;server.listen(port);&#10;&#10;//&#38169;&#35823;&#22788;&#29702;&#10;server.on(&#39;error&#39;, onError);&#10;&#10;//&#26381;&#21153;&#21019;&#24314;&#25104;&#21151;&#30417;&#21548;&#31471;&#21475;&#26102;&#20505;&#25191;&#34892;&#10;server.on(&#39;listening&#39;, onListening);&#10;&#10;//&#36825;&#19979;&#38754;&#30340;&#20960;&#20010;&#20989;&#25968;&#23601;&#26159; onError&#65292;onListening&#30340;&#20855;&#20307;&#20989;&#25968;&#65292;&#23601;&#19981;&#20889;&#20102;&#12290;&#10;....</span><br></pre></td></tr></table></figure>
+<h2 id="package-json">package.json</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;&#10;  &#34;name&#34;: &#34;test&#34;,       # &#39033;&#30446;&#21517;&#10;  &#34;version&#34;: &#34;0.0.0&#34;,   # &#39033;&#30446;&#29256;&#26412;&#10;  &#34;private&#34;: true,&#10;  &#34;scripts&#34;: &#123;&#10;    &#34;start&#34;: &#34;node ./bin/www&#34;   #&#21033;&#29992;npm start&#26102;&#20505;&#25191;&#34892;&#10;  &#125;,&#10;  &#34;dependencies&#34;: &#123;     #&#36825;&#19979;&#38754;&#30340;&#37117;&#26159;&#39033;&#30446;&#30340;&#20381;&#36182;&#21253;&#10;    &#34;body-parser&#34;: &#34;~1.12.0&#34;,&#10;    &#34;cookie-parser&#34;: &#34;~1.3.4&#34;,&#10;    &#34;debug&#34;: &#34;~2.1.1&#34;,&#10;    &#34;ejs&#34;: &#34;~2.3.1&#34;,&#10;    &#34;express&#34;: &#34;~4.12.2&#34;,&#10;    &#34;morgan&#34;: &#34;~1.5.1&#34;,&#10;    &#34;serve-favicon&#34;: &#34;~2.2.0&#34;&#10;  &#125;&#10;&#125;&#10;//&#25191;&#34892;npm install&#30340;&#26102;&#20505;&#65292;&#20250;&#26597;&#25214;node_modules&#37324;&#38754;&#30340;&#20381;&#36182;&#21253;&#21644;&#36825;&#37324;&#30340;&#8216;&#21015;&#34920;&#8217;&#23545;&#27604;&#65292;&#27809;&#26377;&#25110;&#32773;&#29256;&#26412;&#19981;&#31526;&#21512;&#30340;&#20250;&#37325;&#26032;&#19979;&#36733;&#65292;&#26377;&#30340;&#20250;&#36339;&#36807;&#12290;&#10;//&#21516;&#26102;npm install &#60;name&#62; -save&#65292;&#20250;&#19979;&#36733; &#39;name&#39;&#20381;&#36182;&#21253;&#24182;&#19988;&#20445;&#23384;&#29256;&#26412;&#21040;&#36825;&#37324;&#12290;</span><br></pre></td></tr></table></figure>
+
+        </div>
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/express/">express</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodeJS/">nodeJS</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/12/express-exports/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          nodeJS exports和module.exports的区别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/11/mongodb-use/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MongoDB 学习笔记（三）：基本使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-express-project" data-title="nodeJS利用express搭建项目框架" data-url="http://tenfour.cn/2015/05/12/express-project/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'tenfour'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章分类：</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mongodb/">mongodb</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/">nodeJS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/express/">express</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云：</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogs/" style="font-size: 17.5px;">blogs</a> <a href="/tags/box-shadow/" style="font-size: 10px;">box-shadow</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/exports/" style="font-size: 10px;">exports</a> <a href="/tags/express/" style="font-size: 12.5px;">express</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 17.5px;">hexo</a> <a href="/tags/html/" style="font-size: 12.5px;">html</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nodeJS/" style="font-size: 20px;">nodeJS</a> <a href="/tags/reflows/" style="font-size: 10px;">reflows</a> <a href="/tags/repaints/" style="font-size: 10px;">repaints</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件委托/" style="font-size: 10px;">事件委托</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/博客/" style="font-size: 17.5px;">博客</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/回流/" style="font-size: 10px;">回流</a> <a href="/tags/图片/" style="font-size: 10px;">图片</a> <a href="/tags/多边形/" style="font-size: 10px;">多边形</a> <a href="/tags/天气/" style="font-size: 10px;">天气</a> <a href="/tags/安装/" style="font-size: 12.5px;">安装</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/百分比/" style="font-size: 10px;">百分比</a> <a href="/tags/第三方/" style="font-size: 10px;">第三方</a> <a href="/tags/进度条/" style="font-size: 10px;">进度条</a> <a href="/tags/重绘/" style="font-size: 10px;">重绘</a> <a href="/tags/问题/" style="font-size: 12.5px;">问题</a> <a href="/tags/阴影/" style="font-size: 10px;">阴影</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档：</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">26</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近更新：</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/30/css-box-shadow/">无所不能的box-shadow</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/30/html-hash/">HTML利用hash（#!）弥补ajax局部刷新的不足</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/20/css-polygon/">利用DIV+CSS实现图片的多边形显示效果</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/15/css-circle/">一个div实现圆形百分比进度条</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/13/html-reflows-repaints/">HMLT 页面重绘(repaints)和回流(reflows)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 tenfour<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories/html" class="mobile-nav-link">HTML/HTML5</a>
+  
+    <a href="/categories/css" class="mobile-nav-link">CSS/CSS3</a>
+  
+    <a href="/categories/javascript" class="mobile-nav-link">Javascript</a>
+  
+    <a href="/categories/nodeJS" class="mobile-nav-link">NodeJS</a>
+  
+    <a href="/categories/mongodb" class="mobile-nav-link">MongoDB</a>
+  
+    <a href="/categories/hexo" class="mobile-nav-link">Hexo</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

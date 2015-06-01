@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MongoDB 学习笔记（三）：基本使用 | Tenfour&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="mongodb,数据库,基本使用,语法,增,删,查,改"/>
+  <meta name="description" content="成功启动 MongoDB （启动MongoDB）后，再重新打开一个命令行窗口输入 mongo ，就可以进行数据库的一些操作。
+创建数据库MongoDB 没有创建数据库的命令。use &amp;#39;test&amp;#39;命令切换数据库，当前不存在该数据库则创建该数据库。注意：执行这句命令到下次用 use &amp;lt;db name&amp;gt; 切换数/‘创建’据库之前，下面所有用 db.fn 之类的操作都是针对该数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB 学习笔记（三）：基本使用">
+<meta property="og:url" content="http://tenfour.cn/2015/05/11/mongodb-use/index.html">
+<meta property="og:site_name" content="Tenfour'blogs">
+<meta property="og:description" content="成功启动 MongoDB （启动MongoDB）后，再重新打开一个命令行窗口输入 mongo ，就可以进行数据库的一些操作。
+创建数据库MongoDB 没有创建数据库的命令。use &amp;#39;test&amp;#39;命令切换数据库，当前不存在该数据库则创建该数据库。注意：执行这句命令到下次用 use &amp;lt;db name&amp;gt; 切换数/‘创建’据库之前，下面所有用 db.fn 之类的操作都是针对该数">
+<meta property="og:updated_time" content="2015-05-20T08:40:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB 学习笔记（三）：基本使用">
+<meta name="twitter:description" content="成功启动 MongoDB （启动MongoDB）后，再重新打开一个命令行窗口输入 mongo ，就可以进行数据库的一些操作。
+创建数据库MongoDB 没有创建数据库的命令。use &amp;#39;test&amp;#39;命令切换数据库，当前不存在该数据库则创建该数据库。注意：执行这句命令到下次用 use &amp;lt;db name&amp;gt; 切换数/‘创建’据库之前，下面所有用 db.fn 之类的操作都是针对该数">
+  
+    <link rel="shortcut icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories/html">HTML/HTML5</a>
+        
+          <a class="main-nav-link" href="/categories/css">CSS/CSS3</a>
+        
+          <a class="main-nav-link" href="/categories/javascript">Javascript</a>
+        
+          <a class="main-nav-link" href="/categories/nodeJS">NodeJS</a>
+        
+          <a class="main-nav-link" href="/categories/mongodb">MongoDB</a>
+        
+          <a class="main-nav-link" href="/categories/hexo">Hexo</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mongodb-use" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/11/mongodb-use/" class="article-date">
+  <time datetime="2015-05-11T07:59:53.000Z" itemprop="datePublished">2015-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/mongodb/">mongodb</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MongoDB 学习笔记（三）：基本使用
+    </h1>
+  
+
+      </header>
+      
+      
+        <div class="article-entry" itemprop="articleBody">
+          <p>成功启动 <code>MongoDB</code> （<a href="/2015/05/09/mongodb-server">启动MongoDB</a>）后，再重新打开一个命令行窗口输入 <code>mongo</code> ，就可以进行数据库的一些操作。</p>
+<h2 id="创建数据库">创建数据库</h2><p><code>MongoDB</code> 没有创建数据库的命令。<br><code>use &#39;test&#39;</code>命令切换数据库，当前不存在该数据库则创建该数据库。<br><strong>注意：执行这句命令到下次用 <code>use &lt;db name&gt;</code> 切换数/‘创建’据库之前，下面所有用 <code>db.fn</code> 之类的操作都是针对该数据库。下面都是针对 <code>test</code> 数据库进行说明。</strong></p>
+<h2 id="创建集合（表）">创建集合（表）</h2><ol>
+<li>可以用 <code>db.createCollection(&#39;user&#39;)</code> 给 <code>text</code> 创建一个名为 <code>user</code> 的集合（表）。</li>
+<li>用 <code>db.user.save({name: &#39;aish&#39;,sex:&#39;M&#39;})</code> 来给 <code>test</code>数据库下面的集合<code>user</code>添加一条数据，如果该集合不存在会默认添加这个集合。</li>
+</ol>
+<h2 id="数据库基本命令">数据库基本命令</h2><ol>
+<li><code>show dbs</code>  显示所有数据库列表</li>
+<li><code>use test</code>  (有test)切换/(无test)创建数据库</li>
+<li><code>db.dropDatabase()</code> 删除当前使用数据库</li>
+<li><code>db.cloneDatabase(“ip地址”)</code>  将指定机器上的数据库的数据克隆到当前数据库</li>
+<li><code>db.copyDatabase(&quot;A&quot;, &quot;B&quot;, &quot;ip地址&quot;)</code> 将指定电脑上面A数据库中的类容复制到B数据库中</li>
+<li><code>db.getName()</code> 查看当前使用数据库名称</li>
+</ol>
+<h2 id="集合基本命令">集合基本命令</h2><ol>
+<li><code>show collections</code>  显示当前使用数据库所有集合列表</li>
+<li><code>db.createCollection(&lt;name&gt;,[option])</code> 创建集合，name必填，option可无，可选参数有 <code>{capped: &lt;Boolean&gt;, autoIndexId: &lt;Boolean&gt;, size: &lt;number&gt;, max &lt;number&gt;}</code>。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.createCollection(&#39;test&#39;, &#123;&#10;    capped: &#60;Boolean&#62;,      #capped:&#26159;&#21542;&#21551;&#29992;&#38598;&#21512;&#38480;&#21046;&#65292;&#22914;&#26524;&#24320;&#21551;&#38656;&#35201;&#21046;&#23450;&#19968;&#20010;&#38480;&#21046;&#26465;&#20214;&#65292;&#40664;&#35748;&#20026;&#19981;&#21551;&#29992;&#10;    autoIndexId: &#60;Boolean&#62;, #&#26159;&#21542;&#20351;&#29992;_id&#20316;&#20026;&#32034;&#24341;(true&#25110;false)&#65292;&#40664;&#35748;&#20026;&#20351;&#29992;(true)&#10;    size: &#60;number&#62;,         #&#38480;&#21046;&#38598;&#21512;&#20351;&#29992;&#31354;&#38388;&#30340;&#22823;&#23567;&#65292;&#40664;&#35748;&#20026;&#27809;&#26377;&#38480;&#21046;&#10;    max &#60;number&#62;            #&#38598;&#21512;&#20013;&#26368;&#22823;&#26465;&#25968;&#38480;&#21046;&#65292;&#40664;&#35748;&#20026;&#27809;&#26377;&#38480;&#21046;&#10;&#125;);                         #size&#30340;&#20248;&#20808;&#32423;&#27604;max&#35201;&#39640;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="数据操作">数据操作</h2><h3 id="查询">查询</h3><ol>
+<li><p>查询user集合全部</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find()&#10;//select * from user</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过滤name相同的数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.distinct(&#34;name&#34;)&#10;//select distinct name from user</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询 <code>age=22</code> 的数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find(&#123;age: 22&#125;)&#10;//select * from user where age=22</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大于小于查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find(&#123;age: &#123;$gt: 22&#125;&#125;)&#10;//select * from user where age&#62;22&#10;//&#23567;&#20110;&#65306;`$lt`,&#23567;&#20110;&#31561;&#20110;&#65306;`$lte`&#65292;&#22823;&#20110;&#31561;&#20110;&#65306;`$gte`&#65292;&#19981;&#31561;&#20110;&#65306;$ne</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>like 查询 (支持正则)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find(&#123;name: /mongo/&#125;)&#10;//select * from user where name like &#39;%mongo%&#39;&#10;db.user.find(&#123;name: /^mongo/&#125;)&#10;//select * from user where name like &#39;mongo%&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>and 条件查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find(&#123;age: 22,sex: &#39;F&#39;&#125;) #(&#19981;&#21516;&#23646;&#24615;)&#10;//select * from user where age=22 and sex=&#39;F&#39;&#10;db.user.find(&#123;age: &#123;$gte: 18, $lte: 25&#125;&#125;) #(&#21516;&#23646;&#24615;)&#10;//select * from user where age &#60;= 25 and age &#62;= 18</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>or 条件查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find(&#123;&#39;$or&#39;:[&#123;&#39;name&#39;:&#39;hurry&#39;&#125;, &#123;&#39;age&#39;:18&#125;]&#125;)&#10;//select * from user where name = &#39;hurry&#39; or age = 18</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>in 条件查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find(&#123;&#39;age&#39;:&#123;&#39;$in&#39;:[10, 22, 26]&#125;&#125;)&#10;//select * from user where age in (10, 22, 26)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>匹配null</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find(&#123;&#39;age&#39; : null)&#10;//select * from user where age is null</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>指定显示列查询</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find(&#123;&#125;,&#123;name: 1,age: 1&#125;)&#10;//select name,age from user&#10;&#10;//&#31532;&#19968;&#20010;&#21442;&#25968;&#26159;where&#30340;&#26465;&#20214;&#65292;&#19978;&#38754;&#20960;&#26465;&#37117;&#33021;&#29992;&#12290;&#10;db.user.find(&#123;age: &#123;$gt: 18&#125;&#125;,&#123;name: 1,age: 1&#125;)&#10;//select name,age from user where age&#62;18&#10;&#10;//&#31532;&#20108;&#20010;&#21442;&#25968;&#26159;&#35201;&#26174;&#31034;&#30340;&#21015;&#65292;1&#20026;&#26174;&#31034;&#65292;0&#20026;&#19981;&#26174;&#31034;&#12290;&#10;//&#22914;&#26524;&#31532;&#20108;&#20010;&#21442;&#25968;&#20026;&#31354;&#21017;&#40664;&#35748;&#20840;&#37096;&#26174;&#31034;&#65292;&#22914;&#26524;&#31532;&#20108;&#20010;&#21442;&#25968;&#26377;&#20540;&#20294;&#26159;&#19981;&#20840;&#65292;&#27809;&#26377;&#20889;&#30340;&#40664;&#35748;&#19981;&#26174;&#31034;&#12290;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>排序</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find().sort(&#123;age: 1&#125;)   //&#21319;&#24207;&#10;db.user.find().sort(&#123;age: -1&#125;)  //&#38477;&#24207;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询前几条</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find().limit(10)    //&#21069;&#21313;&#26465;&#10;//select top 5 * from user</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询几条以后的数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find().skip(10);    //&#21313;&#26465;&#20197;&#21518;&#30340;&#25968;&#25454;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询指定条数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find().limit(10).skip(5)    //5-10&#26465;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询第一条数据</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.findOne()&#10;//&#21487;&#36319;&#26465;&#20214;&#10;db.user.findOne(&#123;age: 22&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询条数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.find().count()&#10;//&#21487;&#36319;&#26465;&#20214;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="修改、添加、删除">修改、添加、删除</h3><ol>
+<li><p>添加</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.save(&#123;name: &#39;zhangsan&#39;, age: 25&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.update( criteria, objNew, upsert, multi )&#10;//criteria : update&#30340;&#26597;&#35810;&#26465;&#20214;&#65292;&#31867;&#20284;sql update&#26597;&#35810;&#20869;where&#21518;&#38754;&#30340;&#10;//objNew   : update&#30340;&#23545;&#35937;&#21644;&#19968;&#20123;&#26356;&#26032;&#30340;&#25805;&#20316;&#31526;&#65288;&#22914;$,$inc...&#65289;&#31561;&#65292;&#20063;&#21487;&#20197;&#29702;&#35299;&#20026;sql update&#26597;&#35810;&#20869;set&#21518;&#38754;&#30340;&#10;//upsert   : &#36825;&#20010;&#21442;&#25968;&#30340;&#24847;&#24605;&#26159;&#65292;&#22914;&#26524;&#19981;&#23384;&#22312;update&#30340;&#35760;&#24405;&#65292;&#26159;&#21542;&#25554;&#20837;objNew,true&#20026;&#25554;&#20837;&#65292;&#40664;&#35748;&#26159;false&#65292;&#19981;&#25554;&#20837;&#12290;&#10;//multi    : mongodb&#40664;&#35748;&#26159;false,&#21482;&#26356;&#26032;&#25214;&#21040;&#30340;&#31532;&#19968;&#26465;&#35760;&#24405;&#65292;&#22914;&#26524;&#36825;&#20010;&#21442;&#25968;&#20026;true,&#23601;&#25226;&#25353;&#26465;&#20214;&#26597;&#20986;&#26469;&#22810;&#26465;&#35760;&#24405;&#20840;&#37096;&#26356;&#26032;&#12290;&#10;&#10;db.user.update(&#123;name: &#39;zhangsan&#39;&#125;,&#123;$set: &#123;age: 20&#125;&#125;)&#10;//update user set age = 20 where name=&#39;zhangsan&#39;&#10;&#10;db.users.update(&#123;name: &#39;zhangsan&#39;&#125;, &#123;$inc: &#123;age: 20&#125;)&#10;//update user set age = age+20 where name=&#39;zhangsan&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">db.user.remove(&#123;age: 20&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+        </div>
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/">mongodb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/12/express-project/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          nodeJS利用express搭建项目框架
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/11/js-weather/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">javascript 利用新浪API获取城市天气信息</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-mongodb-use" data-title="MongoDB 学习笔记（三）：基本使用" data-url="http://tenfour.cn/2015/05/11/mongodb-use/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'tenfour'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章分类：</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mongodb/">mongodb</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/">nodeJS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/express/">express</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云：</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogs/" style="font-size: 17.5px;">blogs</a> <a href="/tags/box-shadow/" style="font-size: 10px;">box-shadow</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/exports/" style="font-size: 10px;">exports</a> <a href="/tags/express/" style="font-size: 12.5px;">express</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 17.5px;">hexo</a> <a href="/tags/html/" style="font-size: 12.5px;">html</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nodeJS/" style="font-size: 20px;">nodeJS</a> <a href="/tags/reflows/" style="font-size: 10px;">reflows</a> <a href="/tags/repaints/" style="font-size: 10px;">repaints</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件委托/" style="font-size: 10px;">事件委托</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/博客/" style="font-size: 17.5px;">博客</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/回流/" style="font-size: 10px;">回流</a> <a href="/tags/图片/" style="font-size: 10px;">图片</a> <a href="/tags/多边形/" style="font-size: 10px;">多边形</a> <a href="/tags/天气/" style="font-size: 10px;">天气</a> <a href="/tags/安装/" style="font-size: 12.5px;">安装</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/百分比/" style="font-size: 10px;">百分比</a> <a href="/tags/第三方/" style="font-size: 10px;">第三方</a> <a href="/tags/进度条/" style="font-size: 10px;">进度条</a> <a href="/tags/重绘/" style="font-size: 10px;">重绘</a> <a href="/tags/问题/" style="font-size: 12.5px;">问题</a> <a href="/tags/阴影/" style="font-size: 10px;">阴影</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档：</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">26</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近更新：</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/30/css-box-shadow/">无所不能的box-shadow</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/30/html-hash/">HTML利用hash（#!）弥补ajax局部刷新的不足</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/20/css-polygon/">利用DIV+CSS实现图片的多边形显示效果</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/15/css-circle/">一个div实现圆形百分比进度条</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/13/html-reflows-repaints/">HMLT 页面重绘(repaints)和回流(reflows)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 tenfour<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories/html" class="mobile-nav-link">HTML/HTML5</a>
+  
+    <a href="/categories/css" class="mobile-nav-link">CSS/CSS3</a>
+  
+    <a href="/categories/javascript" class="mobile-nav-link">Javascript</a>
+  
+    <a href="/categories/nodeJS" class="mobile-nav-link">NodeJS</a>
+  
+    <a href="/categories/mongodb" class="mobile-nav-link">MongoDB</a>
+  
+    <a href="/categories/hexo" class="mobile-nav-link">Hexo</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

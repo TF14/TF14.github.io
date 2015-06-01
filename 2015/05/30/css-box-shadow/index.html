@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>无所不能的box-shadow | Tenfour&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="css,css3,box-shadow,阴影,特效,图标，icon"/>
+  <meta name="description" content="你真的了解box-shadow吗？你知道box-shadow可以有几个参数么？你知道box-shadow每个参数的含义么？你知道一个元素可以设置多少个box-shadow么？你能只用一个div（不含伪元素after、before）画出下面这些图形么？….？如果你的答案是否，那么请认真看一下这篇文章。
+box-shadowbox-shadow: h-shadow v-shadow blur spre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="无所不能的box-shadow">
+<meta property="og:url" content="http://tenfour.cn/2015/05/30/css-box-shadow/index.html">
+<meta property="og:site_name" content="Tenfour'blogs">
+<meta property="og:description" content="你真的了解box-shadow吗？你知道box-shadow可以有几个参数么？你知道box-shadow每个参数的含义么？你知道一个元素可以设置多少个box-shadow么？你能只用一个div（不含伪元素after、before）画出下面这些图形么？….？如果你的答案是否，那么请认真看一下这篇文章。
+box-shadowbox-shadow: h-shadow v-shadow blur spre">
+<meta property="og:image" content="http://7xj45h.com1.z0.glb.clouddn.com/css-box-shadow.png">
+<meta property="og:image" content="http://7xj45h.com1.z0.glb.clouddn.com/box-shadow1.png">
+<meta property="og:image" content="http://7xj45h.com1.z0.glb.clouddn.com/box-shadow-icon.png">
+<meta property="og:image" content="http://7xj45h.com1.z0.glb.clouddn.com/hover-border.png">
+<meta property="og:updated_time" content="2015-05-30T10:58:48.868Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="无所不能的box-shadow">
+<meta name="twitter:description" content="你真的了解box-shadow吗？你知道box-shadow可以有几个参数么？你知道box-shadow每个参数的含义么？你知道一个元素可以设置多少个box-shadow么？你能只用一个div（不含伪元素after、before）画出下面这些图形么？….？如果你的答案是否，那么请认真看一下这篇文章。
+box-shadowbox-shadow: h-shadow v-shadow blur spre">
+  
+    <link rel="shortcut icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories/html">HTML/HTML5</a>
+        
+          <a class="main-nav-link" href="/categories/css">CSS/CSS3</a>
+        
+          <a class="main-nav-link" href="/categories/javascript">Javascript</a>
+        
+          <a class="main-nav-link" href="/categories/nodeJS">NodeJS</a>
+        
+          <a class="main-nav-link" href="/categories/mongodb">MongoDB</a>
+        
+          <a class="main-nav-link" href="/categories/hexo">Hexo</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-css-box-shadow" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/30/css-box-shadow/" class="article-date">
+  <time datetime="2015-05-30T09:16:27.000Z" itemprop="datePublished">2015-05-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/css/">css</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      无所不能的box-shadow
+    </h1>
+  
+
+      </header>
+      
+      
+        <div class="article-entry" itemprop="articleBody">
+          <p>你真的了解box-shadow吗？你知道box-shadow可以有几个参数么？你知道box-shadow每个参数的含义么？你知道一个元素可以设置多少个box-shadow么？你能只用一个div（不含伪元素after、before）画出下面这些图形么？….？<br><img src="http://7xj45h.com1.z0.glb.clouddn.com/css-box-shadow.png" alt="box-shadow"><br>如果你的答案是否，那么请认真看一下这篇文章。</p>
+<h2 id="box-shadow">box-shadow</h2><p>box-shadow: h-shadow v-shadow blur spread color inset;<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">h-shadow&#9;&#24517;&#38656;&#12290;&#27700;&#24179;&#38452;&#24433;&#30340;&#20301;&#32622;&#12290;&#20801;&#35768;&#36127;&#20540;&#12290;&#10;v-shadow&#9;&#24517;&#38656;&#12290;&#22402;&#30452;&#38452;&#24433;&#30340;&#20301;&#32622;&#12290;&#20801;&#35768;&#36127;&#20540;&#12290;&#10;blur&#9;        &#21487;&#36873;&#12290;&#27169;&#31946;&#36317;&#31163;&#12290;&#10;spread&#9;        &#21487;&#36873;&#12290;&#38452;&#24433;&#30340;&#23610;&#23544;&#12290;&#10;color&#9;        &#21487;&#36873;&#12290;&#38452;&#24433;&#30340;&#39068;&#33394;&#12290;&#35831;&#21442;&#38405; CSS &#39068;&#33394;&#20540;&#12290;&#10;inset&#9;        &#21487;&#36873;&#12290;&#23558;&#22806;&#37096;&#38452;&#24433; (outset) &#25913;&#20026;&#20869;&#37096;&#38452;&#24433;&#12290;</span><br></pre></td></tr></table></figure></p>
+<p>box-shadow所产生的阴影大小和自己完全一样，除了颜色，阴影的颜色有参数color决定，h-shadow v-shadow是阴影的水平偏移量和垂直偏移量。一个元素可以有无数个box-shadow。<br><strong>IE9+、Firefox 4、Chrome、Opera 以及 Safari 5.1.1 支持 box-shadow 属性。</strong></p>
+<h2 id="box-shadow妙用">box-shadow妙用</h2><h3 id="普通阴影">普通阴影</h3><p><img src="http://7xj45h.com1.z0.glb.clouddn.com/box-shadow1.png" alt="产生立体效果"><br>让容器产生立体效果，这种也是阴影(box-shadow)最普通最常用的方式，这里就不多说。</p>
+<h3 id="绘制icon小图标">绘制icon小图标</h3><p><img src="http://7xj45h.com1.z0.glb.clouddn.com/box-shadow-icon.png" alt="icon绘制例1"><br>就用上图的图1举例说明，放大N倍可以看到效果如图二。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#60;style&#62;&#10;.arrow-up &#123;&#10;    /*&#20135;&#29983;&#19968;&#20010;1*4&#30340;&#23481;&#22120;&#65292;&#20063;&#23601;&#26159;&#26368;&#20013;&#38388;&#30340;&#19968;&#26681;&#31446;&#30528;&#30340;*/&#10;    width: 1px;&#10;    height: 4px;&#10;    background: gray;&#10;&#10;    /*&#20135;&#29983;&#21491;&#36793;&#30340;&#20116;&#26681;&#65292;&#20998;&#21035;&#35774;&#32622;X&#21644;Y&#30340;&#20559;&#31227;&#37327;*/&#10;    box-shadow: 1px 1px gray,&#10;                2px 2px gray,&#10;                3px 3px gray,&#10;                4px 5px gray,&#10;                5px 5px gray,&#10;    /*&#20135;&#29983;&#24038;&#36793;&#36793;&#30340;&#20116;&#26681;&#65292;&#20998;&#21035;&#35774;&#32622;X&#21644;Y&#30340;&#20559;&#31227;&#37327;*/&#10;                -1px 1px gray,&#10;                -2px 2px gray,&#10;                -3px 3px gray;&#10;                -4px 4px gray;&#10;                -5px 5px gray;&#10;&#9;&#9;&#125;&#10;&#60;/style&#62;&#10;&#10;&#60;div class=&#34;arrow-up&#34;&#62;&#60;/div&#62;</span><br></pre></td></tr></table></figure></p>
+<p>可以看一下效果，如果是图片怎么也就几十B到几K，而且还要下载资源占用宽带，css就这么几行，多少个字可以自己算算，当然，有人会说可以用border画出来，也可以，但是再复杂一点的呢？如第一张图的其他图标？</p>
+<h3 id="点击时候边框效果">点击时候边框效果</h3><p>很多图片或者容器点击选中或者hover的时候会有一个边框的改变。如下图：<br><img src="http://7xj45h.com1.z0.glb.clouddn.com/hover-border.png" alt="选中出现border"></p>
+<ul>
+<li>Q：这个效果不是直接hover或者点击上去添加border就OK了？</li>
+<li>A：这么做会改变原来的布局，会让当前选中的图片和原来的列表出现对不齐的效果。</li>
+<li>Q：那我事先给所有的图片都加一个透明的边框，选中的时候只改变背景颜色就行了。</li>
+<li>A：这样做对这个图的效果能实现，那要是边框有变化呢？比如hover上去出现一个动画效果，从0变到3px？事先添加border是一个固定值，实现不了。</li>
+<li>Q：那我可以通过JS计算给调整位置和大小或者给图片加一个box-sizing: border-box,让计css算宽度的时候把border也计算在width一起，这两种方式都可以实现。</li>
+<li>A：这样做可以实现，但是会影响页面的回流和重绘（<a href="/2015/05/13/html-reflows-repaints/">HMLT 页面重绘(repaints)和回流(reflows)</a>），影响性能。</li>
+<li>Q：那利用<strong>【outline】</strong><sup><strong>注释1</strong></sup>呢？</li>
+<li>A：这个可以，但是要是边框有圆角效果呢？outline只能有直角效果。</li>
+<li>Q：…..<br>【注释1】：张鑫旭说过，outline就是border的近亲，outline就和border一样，可以类似border的css写法：<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//&#31616;&#20889;&#65306;&#10;outline: 1px solid red;&#10;&#10;//&#25110;&#32773;&#20998;&#24320;&#10;outline-width: 1px;&#10;outline-style: solid; //dotted, dashed, solid&#31561;...&#10;outline-color: red;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>但是和border不同的是outline不会计算在文档流中，不会影响其他元素的布局，这一点和box-shadow一样。所以不会触发页面的回流。<br>那有人会说了，既然一样border可以用border-radius添加圆角，那outline不也一样？这样不就可以实现上面的Q&amp;A？很不幸的告诉你，outline-radius只有火狐支持，还要添加私有前缀：-moz-outline-radius。</p>
+<p>所以上面的Q&amp;A最好还是用box-shadow实现，box-shadow是复制原来元素（除了颜色），所以能实现，IE兼容性可以用IE的滤镜处理，具体自己去查。</p>
+<h3 id="保存图片为“css代码”">保存图片为“css代码”</h3><p>把图片存为“CSS代码”？有人认为是天方夜谈，先看代码再说原理。<br>这个是张鑫旭博客那边的一个页面，<a href="http://www.zhangxinxu.com/GitHub/boxShadow/box-shadow.html" target="_blank" rel="external">点击查看</a>，把生成的代码。<br>然后把代码粘贴到一个div的css里面:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">div &#123;&#10;    width: 1px;&#10;    height: 1px;&#10;    box-shadow: &#31896;&#36148;&#20195;&#30721;&#12290;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样图片就能显示出来了。具体实现原理是用了canvas的imageData 。先把图片通过drawImage画到canvas上面，再通过imageData获取图片范围内的所有像素点的颜色值，imageData存储的是 4 <em> height </em> width这么长的一个数组，每一个像素会占数组的4个位置，分别存储的RGBA四个值，所以给div 1px <em>1px 这么大，那么所有的box-shadow阴影也就是1px </em> 1px这么大，然后设置阴影颜色和左右偏移值设置阴影形成图片。</p>
+
+        </div>
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/box-shadow/">box-shadow</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/阴影/">阴影</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/05/30/html-hash/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTML利用hash（#!）弥补ajax局部刷新的不足</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-css-box-shadow" data-title="无所不能的box-shadow" data-url="http://tenfour.cn/2015/05/30/css-box-shadow/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'tenfour'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章分类：</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mongodb/">mongodb</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/">nodeJS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/express/">express</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云：</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogs/" style="font-size: 17.5px;">blogs</a> <a href="/tags/box-shadow/" style="font-size: 10px;">box-shadow</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/exports/" style="font-size: 10px;">exports</a> <a href="/tags/express/" style="font-size: 12.5px;">express</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 17.5px;">hexo</a> <a href="/tags/html/" style="font-size: 12.5px;">html</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nodeJS/" style="font-size: 20px;">nodeJS</a> <a href="/tags/reflows/" style="font-size: 10px;">reflows</a> <a href="/tags/repaints/" style="font-size: 10px;">repaints</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件委托/" style="font-size: 10px;">事件委托</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/博客/" style="font-size: 17.5px;">博客</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/回流/" style="font-size: 10px;">回流</a> <a href="/tags/图片/" style="font-size: 10px;">图片</a> <a href="/tags/多边形/" style="font-size: 10px;">多边形</a> <a href="/tags/天气/" style="font-size: 10px;">天气</a> <a href="/tags/安装/" style="font-size: 12.5px;">安装</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/百分比/" style="font-size: 10px;">百分比</a> <a href="/tags/第三方/" style="font-size: 10px;">第三方</a> <a href="/tags/进度条/" style="font-size: 10px;">进度条</a> <a href="/tags/重绘/" style="font-size: 10px;">重绘</a> <a href="/tags/问题/" style="font-size: 12.5px;">问题</a> <a href="/tags/阴影/" style="font-size: 10px;">阴影</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档：</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">26</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近更新：</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/30/css-box-shadow/">无所不能的box-shadow</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/30/html-hash/">HTML利用hash（#!）弥补ajax局部刷新的不足</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/20/css-polygon/">利用DIV+CSS实现图片的多边形显示效果</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/15/css-circle/">一个div实现圆形百分比进度条</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/13/html-reflows-repaints/">HMLT 页面重绘(repaints)和回流(reflows)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 tenfour<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories/html" class="mobile-nav-link">HTML/HTML5</a>
+  
+    <a href="/categories/css" class="mobile-nav-link">CSS/CSS3</a>
+  
+    <a href="/categories/javascript" class="mobile-nav-link">Javascript</a>
+  
+    <a href="/categories/nodeJS" class="mobile-nav-link">NodeJS</a>
+  
+    <a href="/categories/mongodb" class="mobile-nav-link">MongoDB</a>
+  
+    <a href="/categories/hexo" class="mobile-nav-link">Hexo</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

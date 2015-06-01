@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HMLT 页面重绘(repaints)和回流(reflows) | Tenfour&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="html,css,reflows,repaints,reflow,repaint,重绘,回流"/>
+  <meta name="description" content="HTML呈现页面流程当你在浏览器地址栏输入一个域名（网址）或者ip地址，首先，如果是域名，浏览器会首先通过DNS域名解析系统解析成一个ip地址，然后访问该ip地址下载关联的html、scc、js、img等。当然，这中间还有很多流程比如“三次握手”什么的这些就都省略了，当拿到这些文件接下来的流程才与本文章有关。
+
+浏览器会把 HTML 文件解析成一个 DOM树（DOM tree），对于看过数据结构的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HMLT 页面重绘(repaints)和回流(reflows)">
+<meta property="og:url" content="http://tenfour.cn/2015/05/13/html-reflows-repaints/index.html">
+<meta property="og:site_name" content="Tenfour'blogs">
+<meta property="og:description" content="HTML呈现页面流程当你在浏览器地址栏输入一个域名（网址）或者ip地址，首先，如果是域名，浏览器会首先通过DNS域名解析系统解析成一个ip地址，然后访问该ip地址下载关联的html、scc、js、img等。当然，这中间还有很多流程比如“三次握手”什么的这些就都省略了，当拿到这些文件接下来的流程才与本文章有关。
+
+浏览器会把 HTML 文件解析成一个 DOM树（DOM tree），对于看过数据结构的">
+<meta property="og:updated_time" content="2015-05-20T08:39:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HMLT 页面重绘(repaints)和回流(reflows)">
+<meta name="twitter:description" content="HTML呈现页面流程当你在浏览器地址栏输入一个域名（网址）或者ip地址，首先，如果是域名，浏览器会首先通过DNS域名解析系统解析成一个ip地址，然后访问该ip地址下载关联的html、scc、js、img等。当然，这中间还有很多流程比如“三次握手”什么的这些就都省略了，当拿到这些文件接下来的流程才与本文章有关。
+
+浏览器会把 HTML 文件解析成一个 DOM树（DOM tree），对于看过数据结构的">
+  
+    <link rel="shortcut icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories/html">HTML/HTML5</a>
+        
+          <a class="main-nav-link" href="/categories/css">CSS/CSS3</a>
+        
+          <a class="main-nav-link" href="/categories/javascript">Javascript</a>
+        
+          <a class="main-nav-link" href="/categories/nodeJS">NodeJS</a>
+        
+          <a class="main-nav-link" href="/categories/mongodb">MongoDB</a>
+        
+          <a class="main-nav-link" href="/categories/hexo">Hexo</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-html-reflows-repaints" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/13/html-reflows-repaints/" class="article-date">
+  <time datetime="2015-05-13T12:07:32.000Z" itemprop="datePublished">2015-05-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/html/">html</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HMLT 页面重绘(repaints)和回流(reflows)
+    </h1>
+  
+
+      </header>
+      
+      
+        <div class="article-entry" itemprop="articleBody">
+          <h2 id="HTML呈现页面流程">HTML呈现页面流程</h2><p>当你在浏览器地址栏输入一个域名（网址）或者ip地址，首先，如果是域名，浏览器会首先通过DNS域名解析系统解析成一个ip地址，然后访问该ip地址下载关联的html、scc、js、img等。当然，这中间还有很多流程比如“三次握手”什么的这些就都省略了，当拿到这些文件接下来的流程才与本文章有关。</p>
+<ol>
+<li>浏览器会把 <code>HTML</code> 文件解析成一个 <code>DOM树</code>（DOM tree），对于看过数据结构的对<code>树</code>这个名词并不陌生，对编程中<code>树</code>这个名词不熟悉的可以想象成一颗真实的树，树根就是<code>树</code>的根节点，每一个分枝点都算一个节点，一个节点(A)分出一个或者多个节点(A1,A2,A3…)叫子节点，同样，相对于A1,A2…来说A叫父节点。<br><code>HTML</code> 中的每一个标签都是树中的一个节点，<code>document</code>就是树的根节点。<code>DOM树</code>包含了<code>HTML</code>所有标签，包括不可见的<code>script</code>等、<code>display:none</code>隐藏的标签。</li>
+<li>同时（相对于不同的浏览器1，2的顺序可能有变化），浏览器把所有样式（css）解析成结构体，在解析过程中，浏览器会干掉不能识别的样式，比如谷歌会干掉<code>-moz-,-ms-,-o-</code>等，css hach(加_、*、+)区别浏览器的css，另外还有就是写错的(例如width写成widht)等。</li>
+<li>完成之后浏览器会结合<code>DOM树</code>和样式结构体构建<code>render tree</code>(渲染树、呈现树)。<code>render tree</code>和<code>DOM tree</code>的区别在于：<ul>
+<li><code>render tree</code>能识别样式，每个节点中包含自己的样式。</li>
+<li><code>render tree</code>不包含隐藏的节点，<code>display:none</code>的节点。但是<code>visibility:hidden</code>节点会包含在<code>render tree</code>中，因为它占有空间，会影响页面的布局和渲染。</li>
+<li><code>render tree</code>不包含不呈现在页面中，不影响页面渲染的节点。如<code>head</code>这种。</li>
+<li>根据CSS2的标准，<code>render tree</code>中的每个节点都称为Box (Box dimensions)，理解页面元素为一个具有填充、边距、边框和位置的盒子。</li>
+</ul>
+</li>
+<li>一旦render tree构建完毕后，浏览器就可以根据<code>render tree</code>来绘制页面了。</li>
+</ol>
+<h2 id="回流_|_reflows">回流 | reflows</h2><p>当<code>render tree</code>中的一部分(或全部)因为元素的规模尺寸，布局，隐藏等改变而需要重新构建。这就称为回流(reflow)。每个页面至少需要一次回流，就是在页面第一次加载的时候。在回流的时候，浏览器会使渲染树中受到影响的部分失效，并重新构造这部分渲染树，完成回流后，浏览器会重新绘制受影响的部分到屏幕中，该过程成为重绘。</p>
+<h2 id="重绘_|_repaints">重绘 | repaints</h2><p> 当render tree中的一些元素需要更新属性，而这些属性只是影响元素的外观，风格，而不会影响布局的，比如background-color。则就叫称为重绘。</p>
+<h2 id="重绘和回流何时发生">重绘和回流何时发生</h2><p>当页面布局和几何属性改变时就需要回流。下述情况会发生浏览器回流：</p>
+<ol>
+<li>添加或者删除可见的DOM元素；</li>
+<li>元素位置改变；</li>
+<li>元素尺寸改变——边距、填充、边框、宽度和高度</li>
+<li>内容改变——比如文本改变或者图片大小改变而引起的计算值宽度和高度改变；</li>
+<li>页面渲染初始化；</li>
+<li>浏览器窗口尺寸改变——resize事件发生时；</li>
+<li>…等。</li>
+</ol>
+<p>当元素只改变外观风格不影响布局则只造成重绘，比如元素改变背景颜色，边框颜色，字体颜色等。<br><strong>注意：回流一定会造成重绘。</strong></p>
+<h2 id="浏览器">浏览器</h2><p>前端程序员都清楚，随便几句句js都会发生上面的至少几条甚至几十条操作，也就是要发生几次到几十次回流重绘，这样浏览器会完蛋的，所以现在很多浏览器升级后都给自己添加了一个队列，当要影响页面重绘时会添加到这个队列中，等队列操作到了一定时间或者一定数量就会进行一次批处理，这样就只发生一次回流重绘。</p>
+<p>虽然浏览器有了优化，但是我们写代码的时候有一些代码会提前强制浏览器触发处理这个队列，如下面的这些获取一些样式的时候，浏览器为了得到最为精确的实时数据，会提前强制刷新渲染队列后再给出最为精确的数据：</p>
+<ol>
+<li>offsetTop, offsetLeft, offsetWidth, offsetHeight</li>
+<li>scrollTop/Left/Width/Height</li>
+<li>clientTop/Left/Width/Height</li>
+<li>width,height</li>
+<li>请求了getComputedStyle(), 或者 IE的 currentStyle等。</li>
+</ol>
+<h2 id="减少回流重绘优化代码">减少回流重绘优化代码</h2><p>减少回流、重绘其实就是需要减少对render tree的操作（合并多次多DOM和样式的修改），并减少对一些style信息的请求，尽量利用好浏览器的优化策略。具体方法有：</p>
+<h3 id="直接改变className，如果动态改变样式，则使用cssText（考虑没有优化的浏览器）">直接改变className，如果动态改变样式，则使用cssText（考虑没有优化的浏览器）</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">//&#19981;&#22909;&#30340;&#20889;&#27861;&#10;var left = 1;&#10;var top = 1;&#10;el.style.left = left + &#34;px&#34;; //(1)&#10;el.style.top = top + &#34;px&#34;; //(2)&#10;el.className += &#34; className1&#34;;&#10; //&#36825;&#37324;(1)(2)&#20004;&#20010;&#22320;&#26041;&#33719;&#21462;&#37117;&#35201;&#24433;&#21709;&#22238;&#27969;&#37325;&#32472;&#10;&#10;// &#27604;&#36739;&#22909;&#30340;&#20889;&#27861;&#10;el.style.cssText += &#34;; &#10;left: &#34; + left + &#34;px; &#10;top: &#34; + top + &#34;px;&#34;;</span><br></pre></td></tr></table></figure>
+<h3 id="批量添加元素的时候让要操作的元素进行js操作，处理完后一起更新到html">批量添加元素的时候让要操作的元素进行js操作，处理完后一起更新到html</h3><ol>
+<li>使用文档片段（DocumentFragment）进行缓存操作,引发一次回流和重绘；</li>
+<li>使用display:none技术，只引发两次回流和重绘（隐藏一次，插入完成后显示又一次）；</li>
+<li>使用cloneNode(true or false) 和 replaceChild 技术，引发一次回流和重绘；</li>
+</ol>
+<h3 id="不要经常访问会引起浏览器flush队列的属性，如果你确实要访问，利用缓存（var_一个变量临时存储）等…">不要经常访问会引起浏览器flush队列的属性，如果你确实要访问，利用缓存（var 一个变量临时存储）等…</h3>
+        </div>
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/reflows/">reflows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/repaints/">repaints</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/回流/">回流</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/重绘/">重绘</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/15/css-circle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          一个div实现圆形百分比进度条
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/13/js-jsonp/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Jsonp 个人理解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-html-reflows-repaints" data-title="HMLT 页面重绘(repaints)和回流(reflows)" data-url="http://tenfour.cn/2015/05/13/html-reflows-repaints/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'tenfour'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章分类：</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mongodb/">mongodb</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/">nodeJS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/express/">express</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云：</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogs/" style="font-size: 17.5px;">blogs</a> <a href="/tags/box-shadow/" style="font-size: 10px;">box-shadow</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/exports/" style="font-size: 10px;">exports</a> <a href="/tags/express/" style="font-size: 12.5px;">express</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 17.5px;">hexo</a> <a href="/tags/html/" style="font-size: 12.5px;">html</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nodeJS/" style="font-size: 20px;">nodeJS</a> <a href="/tags/reflows/" style="font-size: 10px;">reflows</a> <a href="/tags/repaints/" style="font-size: 10px;">repaints</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件委托/" style="font-size: 10px;">事件委托</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/博客/" style="font-size: 17.5px;">博客</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/回流/" style="font-size: 10px;">回流</a> <a href="/tags/图片/" style="font-size: 10px;">图片</a> <a href="/tags/多边形/" style="font-size: 10px;">多边形</a> <a href="/tags/天气/" style="font-size: 10px;">天气</a> <a href="/tags/安装/" style="font-size: 12.5px;">安装</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/百分比/" style="font-size: 10px;">百分比</a> <a href="/tags/第三方/" style="font-size: 10px;">第三方</a> <a href="/tags/进度条/" style="font-size: 10px;">进度条</a> <a href="/tags/重绘/" style="font-size: 10px;">重绘</a> <a href="/tags/问题/" style="font-size: 12.5px;">问题</a> <a href="/tags/阴影/" style="font-size: 10px;">阴影</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档：</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">26</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近更新：</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/30/css-box-shadow/">无所不能的box-shadow</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/30/html-hash/">HTML利用hash（#!）弥补ajax局部刷新的不足</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/20/css-polygon/">利用DIV+CSS实现图片的多边形显示效果</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/15/css-circle/">一个div实现圆形百分比进度条</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/13/html-reflows-repaints/">HMLT 页面重绘(repaints)和回流(reflows)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 tenfour<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories/html" class="mobile-nav-link">HTML/HTML5</a>
+  
+    <a href="/categories/css" class="mobile-nav-link">CSS/CSS3</a>
+  
+    <a href="/categories/javascript" class="mobile-nav-link">Javascript</a>
+  
+    <a href="/categories/nodeJS" class="mobile-nav-link">NodeJS</a>
+  
+    <a href="/categories/mongodb" class="mobile-nav-link">MongoDB</a>
+  
+    <a href="/categories/hexo" class="mobile-nav-link">Hexo</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo搭建博客（二）：Hello word | Tenfour&#39;blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="hexo,nodejs,博客搭建,blogs,helloword"/>
+  <meta name="description" content="上一章我们已经做好了搭建博客的全部准备工作，现在，我们就来搭建我们的第一篇博客，hello word。
+注意事项在本地预览的时候会发现浏览器的刷新按钮会一直转很久才会停下来，这个是浏览器向服务器请求资源服务器没有请求到或者服务器没有响应浏览器就会一直转等待直到超时才会停下来。因为国内对谷歌的和谐，Hexo有两个地方用了谷歌的CDN，我们必须先修改掉。
+
+themes/landscape/layou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo搭建博客（二）：Hello word">
+<meta property="og:url" content="http://tenfour.cn/2015/05/09/hexo-helloword/index.html">
+<meta property="og:site_name" content="Tenfour'blogs">
+<meta property="og:description" content="上一章我们已经做好了搭建博客的全部准备工作，现在，我们就来搭建我们的第一篇博客，hello word。
+注意事项在本地预览的时候会发现浏览器的刷新按钮会一直转很久才会停下来，这个是浏览器向服务器请求资源服务器没有请求到或者服务器没有响应浏览器就会一直转等待直到超时才会停下来。因为国内对谷歌的和谐，Hexo有两个地方用了谷歌的CDN，我们必须先修改掉。
+
+themes/landscape/layou">
+<meta property="og:updated_time" content="2015-05-20T08:39:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo搭建博客（二）：Hello word">
+<meta name="twitter:description" content="上一章我们已经做好了搭建博客的全部准备工作，现在，我们就来搭建我们的第一篇博客，hello word。
+注意事项在本地预览的时候会发现浏览器的刷新按钮会一直转很久才会停下来，这个是浏览器向服务器请求资源服务器没有请求到或者服务器没有响应浏览器就会一直转等待直到超时才会停下来。因为国内对谷歌的和谐，Hexo有两个地方用了谷歌的CDN，我们必须先修改掉。
+
+themes/landscape/layou">
+  
+    <link rel="shortcut icon" href="/css/images/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories/html">HTML/HTML5</a>
+        
+          <a class="main-nav-link" href="/categories/css">CSS/CSS3</a>
+        
+          <a class="main-nav-link" href="/categories/javascript">Javascript</a>
+        
+          <a class="main-nav-link" href="/categories/nodeJS">NodeJS</a>
+        
+          <a class="main-nav-link" href="/categories/mongodb">MongoDB</a>
+        
+          <a class="main-nav-link" href="/categories/hexo">Hexo</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-hexo-helloword" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/05/09/hexo-helloword/" class="article-date">
+  <time datetime="2015-05-09T03:13:08.000Z" itemprop="datePublished">2015-05-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Hexo搭建博客（二）：Hello word
+    </h1>
+  
+
+      </header>
+      
+      
+        <div class="article-entry" itemprop="articleBody">
+          <p><a href="/2015/05/09/hexo-ready">上一章</a>我们已经做好了搭建博客的全部准备工作，现在，我们就来搭建我们的第一篇博客，hello word。</p>
+<h2 id="注意事项">注意事项</h2><p>在本地预览的时候会发现浏览器的刷新按钮会一直转很久才会停下来，这个是浏览器向服务器请求资源服务器没有请求到或者服务器没有响应浏览器就会一直转等待直到超时才会停下来。<br>因为国内对谷歌的和谐，Hexo有两个地方用了谷歌的CDN，我们必须先修改掉。</p>
+<ul>
+<li><code>themes/landscape/layout/_partial/head.ejs</code> 里面第31行删掉；</li>
+<li>百度搜索下载 <code>jquery 2.0.3放入themes/source/js</code> 文件夹下面。修改 <code>themes/landscape/layout/_partial/after-footer.ejs</code> 第17行把 <code>//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js</code> 修改为 <code>/js/jquery-2.0.3.min.js</code>。</li>
+</ul>
+<h2 id="创建文章">创建文章</h2><p>cmd 进入blog目录。运行：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new &#34;my first article&#34;</span><br></pre></td></tr></table></figure></p>
+<p>打开<code>blog/source/_posts</code>，里面多了一篇<code>my-first-article.md</code>，打开我们就可以在里面<strong>“写”</strong>这篇博客了。编辑完成后保存。这里会用到 <code>markdown</code> 语法（<a href="/2015/05/09/markdown">Markdown常用语法</a>）。<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo server / hexo s    #&#21551;&#21160;&#26381;&#21153;&#22120;</span><br></pre></td></tr></table></figure></p>
+<p>启动服务器，进入 <code>http://localhost:4000</code> 就可以预览了。<br><strong>注意：因为<code>hexo init</code> 初始化项目的时候默认生成了一篇<code>hello word</code>的文章，这里我们就换个名字。</strong></p>
+<h2 id="文章设置">文章设置</h2><p>在 <code>my-first-article.md</code> 最上面的 <code>---</code> 之前的头部，我们可以加入以下标签：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">title: my first article         #&#25991;&#31456;&#26631;&#39064;&#10;date: 2013-05-29 07:56:29       #&#21457;&#34920;&#26085;&#26399;&#10;categories: blog                #&#25991;&#31456;&#20998;&#31867;&#10;tags: blog                      #&#25991;&#31456;&#26631;&#31614;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>文章标题默认是文章文件名，就是你 <code>hexo new &#39;name&#39;</code> 的 <code>name</code> ，这里的 <code>name</code> 是文件名，同时也是连接的地址，有过编程基础的人都知道地址一般不要有中文，有时候浏览器编码出问题连接地址找不到，所以这里的 <code>name</code> 用英文，<code>title</code> 文章标题改一个中文名就行了。</li>
+<li><code>date</code> 是创建日期，建议不要修改，还有如果你没有通过 <code>hexo new &#39;name&#39;</code> 创建博客自己右键新建 ‘name.md’ 的头部最好自己把这些信息加上。</li>
+<li><p><code>categories</code> 是文章分类，如果有二级分类就这样写:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">categories:&#10;- nodeJS&#10;- express</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>tag</code> 是标签，可以有多个，类似于关键词之类的。多个的时候这样写：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">tag:&#10;- nodeJS&#10;- express</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>注意：所有设置都必须在 <code>*.md</code> 的 <code>---</code>之前，完了必须以<code>---</code>结尾，同时每个 <code>&#39;:&#39;</code> 和 <code>&#39;-&#39;</code> 之间都有一个英文的空格。</strong><br><a href="/2015/05/09/hexo-duoshuo">下一章</a>我们将学习如何添加评论系统。</p>
+
+        </div>
+      
+    <footer class="article-footer">
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blogs/">blogs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nodeJS/">nodeJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/博客/">博客</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/05/09/hexo-duoshuo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hexo搭建博客（三）：添加多说评论系统
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/05/09/markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Markdown 常用语法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-hexo-helloword" data-title="Hexo搭建博客（二）：Hello word" data-url="http://tenfour.cn/2015/05/09/hexo-helloword/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'tenfour'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">文章分类：</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/css/">css</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/html/">html</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javascript/">javascript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/markdown/">markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mongodb/">mongodb</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/">nodeJS</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/nodeJS/express/">express</a><span class="category-list-count">2</span></li></ul></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云：</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blogs/" style="font-size: 17.5px;">blogs</a> <a href="/tags/box-shadow/" style="font-size: 10px;">box-shadow</a> <a href="/tags/css/" style="font-size: 17.5px;">css</a> <a href="/tags/css3/" style="font-size: 10px;">css3</a> <a href="/tags/exports/" style="font-size: 10px;">exports</a> <a href="/tags/express/" style="font-size: 12.5px;">express</a> <a href="/tags/hash/" style="font-size: 10px;">hash</a> <a href="/tags/hexo/" style="font-size: 17.5px;">hexo</a> <a href="/tags/html/" style="font-size: 12.5px;">html</a> <a href="/tags/javascript/" style="font-size: 17.5px;">javascript</a> <a href="/tags/jsonp/" style="font-size: 10px;">jsonp</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/module/" style="font-size: 10px;">module</a> <a href="/tags/mongodb/" style="font-size: 15px;">mongodb</a> <a href="/tags/nodeJS/" style="font-size: 20px;">nodeJS</a> <a href="/tags/reflows/" style="font-size: 10px;">reflows</a> <a href="/tags/repaints/" style="font-size: 10px;">repaints</a> <a href="/tags/事件/" style="font-size: 10px;">事件</a> <a href="/tags/事件委托/" style="font-size: 10px;">事件委托</a> <a href="/tags/优化/" style="font-size: 10px;">优化</a> <a href="/tags/博客/" style="font-size: 17.5px;">博客</a> <a href="/tags/命令/" style="font-size: 10px;">命令</a> <a href="/tags/回流/" style="font-size: 10px;">回流</a> <a href="/tags/图片/" style="font-size: 10px;">图片</a> <a href="/tags/多边形/" style="font-size: 10px;">多边形</a> <a href="/tags/天气/" style="font-size: 10px;">天气</a> <a href="/tags/安装/" style="font-size: 12.5px;">安装</a> <a href="/tags/技巧/" style="font-size: 10px;">技巧</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/模块化/" style="font-size: 10px;">模块化</a> <a href="/tags/正则/" style="font-size: 10px;">正则</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/百分比/" style="font-size: 10px;">百分比</a> <a href="/tags/第三方/" style="font-size: 10px;">第三方</a> <a href="/tags/进度条/" style="font-size: 10px;">进度条</a> <a href="/tags/重绘/" style="font-size: 10px;">重绘</a> <a href="/tags/问题/" style="font-size: 12.5px;">问题</a> <a href="/tags/阴影/" style="font-size: 10px;">阴影</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档：</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">26</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最近更新：</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/05/30/css-box-shadow/">无所不能的box-shadow</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/30/html-hash/">HTML利用hash（#!）弥补ajax局部刷新的不足</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/20/css-polygon/">利用DIV+CSS实现图片的多边形显示效果</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/15/css-circle/">一个div实现圆形百分比进度条</a>
+          </li>
+        
+          <li>
+            <a href="/2015/05/13/html-reflows-repaints/">HMLT 页面重绘(repaints)和回流(reflows)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 tenfour<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories/html" class="mobile-nav-link">HTML/HTML5</a>
+  
+    <a href="/categories/css" class="mobile-nav-link">CSS/CSS3</a>
+  
+    <a href="/categories/javascript" class="mobile-nav-link">Javascript</a>
+  
+    <a href="/categories/nodeJS" class="mobile-nav-link">NodeJS</a>
+  
+    <a href="/categories/mongodb" class="mobile-nav-link">MongoDB</a>
+  
+    <a href="/categories/hexo" class="mobile-nav-link">Hexo</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
